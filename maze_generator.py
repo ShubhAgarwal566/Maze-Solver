@@ -98,21 +98,7 @@ def generate(width, height, verbose=True):
 
 def createMaze(width=9, height=9):
   maze = generate(width, height)
-  #print('\n'.join(maze))
-  print(maze)
+  return(maze)
 
-inp = 'y'
-while(True):
-  if(inp=='y'):
-    width = random.randint(10,20)*2+1
-    height = random.randint(10,20)*2+1
-    print(width, height)
-    createMaze(width,height)
-  elif(inp=='n'):
-    sys.exit(0)
-  else:
-    print("Invalid Input")
-
-  inp = raw_input("More (y/n): ")
 
 # https://gist.github.com/gmalmquist/2782000bd6b378831858
