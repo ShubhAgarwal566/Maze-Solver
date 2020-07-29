@@ -5,6 +5,7 @@ import sys
 import random
 
 import maze_generator
+import LHR
 
 wn = turtle.Screen()               # define the turtle screen
 wn.bgcolor("black")                # set the background colour
@@ -18,79 +19,6 @@ width = height = 9
 grid = maze_generator.createMaze(width,height)
 
 cellWidth = row = int(min(700.0 / len(grid), 1300.0 / len(grid[0])) - 2)
-
-def goDown(myTurtle):
-	if (myTurtle.heading() == 270):                   # check to see if the myTurtle is pointing down
-		x_walls = round(myTurtle.xcor(),0)          # myTurtle x coordinates =
-		y_walls = round(myTurtle.ycor(),0)
-		if (x_walls, y_walls) in finish:          # if myTurtle and the
-			print("Finished")
-			endProgram()
-		if (x_walls +cellWidth, y_walls) in walls:          # check to see if they are walls on the left
-			if(x_walls, y_walls -cellWidth) not in walls:   # check to see if path ahead is clear
-				myTurtle.forward(cellWidth)
-			else:
-				myTurtle.right(90)
-		else:
-			myTurtle.left(90)
-			myTurtle.forward(cellWidth)
-
-
-def goLeft(myTurtle):
-	if (myTurtle.heading() == 0):
-		x_walls = round(myTurtle.xcor(),0)
-		y_walls = round(myTurtle.ycor(),0)
-		if (x_walls, y_walls) in finish:   # check turtle coordinates are at the finish line
-			print("Finished")
-			endProgram()
-		if (x_walls, y_walls +cellWidth) in walls:       # check to see if they are walls on the left
-			if(x_walls +cellWidth, y_walls) not in walls:
-				myTurtle.forward(cellWidth)
-			else:
-				myTurtle.right(90)
-		else:
-			myTurtle.left(90)
-			myTurtle.forward(cellWidth)
-
-
-def goUp(myTurtle):
-	if (myTurtle.heading() == 90):
-		x_walls = round(myTurtle.xcor(),0)
-		y_walls = round(myTurtle.ycor(),0)
-		if (x_walls, y_walls) in finish:   # check turtle coordinates are at the finish line
-			print("Finished")
-			endProgram()
-		if (x_walls -cellWidth, y_walls ) in walls:  # check to see if they are walls on the left
-			if (x_walls, y_walls + cellWidth) not in walls:
-				myTurtle.forward(cellWidth)
-			else:
-				myTurtle.right(90)
-		else:
-			myTurtle.left(90)
-			myTurtle.forward(cellWidth)
-
-def goRight(myTurtle):
-	if (myTurtle.heading() == 180):
-
-		x_walls = round(myTurtle.xcor(),0)
-		y_walls = round(myTurtle.ycor(),0)
-		if (x_walls, y_walls) in finish:   # check turtle coordinates are at the finish line
-			print("Finished")
-			endProgram()
-		if (x_walls, y_walls -cellWidth) in walls:  # check to see if they are walls on the left
-			if (x_walls - cellWidth, y_walls) not in walls:
-				myTurtle.forward(cellWidth)
-			else:
-				myTurtle.right(90)
-		else:
-			myTurtle.left(90)
-			myTurtle.forward(cellWidth)
-
-
-def endProgram():
-	wn.exitonclick()
-	sys.exit()
-
 
 def setupMaze(grid):
 	for y in range(len(grid)):                       # select each line in the grid
@@ -128,7 +56,7 @@ finish = []                  # enable the finish array
 start = time.time()
 setupMaze(grid)
 print("End: " + str(time.time()-start))
-'''
+
 myTurtle = turtle.Turtle(shape='turtle')
 myTurtle.hideturtle()
 myTurtle.color('red')
@@ -139,13 +67,5 @@ myTurtle.shapesize(cellWidth/24.0)
 myTurtle.goto(-588+cellWidth, 288-cellWidth)
 myTurtle.showturtle()
 myTurtle.pendown()
-time.sleep(2)
 
-while True:
-		goRight(myTurtle)
-		goDown(myTurtle)
-		goLeft(myTurtle)
-		goUp(myTurtle)
-
-		# time.sleep(0.02)
-'''
+LHR.start(myTurtle, walls, finish, cellWidth)
