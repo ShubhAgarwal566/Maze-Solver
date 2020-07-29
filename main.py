@@ -1,71 +1,73 @@
-import turtle                    # import turtle library
-from turtle import *
-import time
-import sys
+from tkinter import *
+from tkinter.ttk import Combobox
 import random
 
-import maze_generator
-import LHR
-
-wn = turtle.Screen()               # define the turtle screen
-wn.bgcolor("black")                # set the background colour
-wn.setup(1300,700)                  # setup the dimensions of the working window
+import maze
 
 
-width = random.randint(10,20)*2+1
-height = random.randint(10,20)*2+1
-print(width, height)
-width = height = 9
-grid = maze_generator.createMaze(width,height)
+class MyWindow:
+	def __init__(self, win):
+		self.lb_algo = Label(win, text="Algorithm")
+		self.lb_algo.place(x=70,y=50)
 
-cellWidth = row = int(min(700.0 / len(grid), 1300.0 / len(grid[0])) - 2)
+		self.algo=Combobox(win, values=['Left Hand Rule', 'Other'])
+		self.algo.place(x=150, y=50)
+		
+		self.lb_rows = Label(win, text="Rows")
+		self.lb_cols = Label(win, text="Cols")
+		self.lb_rows.place(x=70,y=100)
+		self.lb_cols.place(x=70,y=150)
 
-def setupMaze(grid):
-	for y in range(len(grid)):                       # select each line in the grid
-		for x in range(len(grid[y])):                # identify each character in the line
-			character = grid[y][x]                   # assign the grid reference to the variable character
-			screen_x = -588 + (x * cellWidth)               # assign screen_x to screen starting position for x ie -588
-			screen_y = 288 - (y * cellWidth)                # assign screen_y to screen starting position for y ie  288
 
-			if character == "+":                     # if grid character contains an +
-				maze.goto(screen_x, screen_y)        # move turtle to the x and y location and
-				maze.showturtle()
-				maze.stamp() 
-				walls.append((screen_x, screen_y))   # add coordinate to walls list
+		self.rows=Entry()
+		self.cols=Entry()
+		self.rows.place(x=150, y=100)
+		self.cols.place(x=150, y=150)
 
-			if character == "e":                     # if grid character contains an e
-				maze.goto(screen_x, screen_y)         # move turtle to the x and y location and
-				maze.color('green')
-				maze.stamp()
-				maze.color('white')                          # stamp a copy of the turtle (green square) on the screen
-				finish.append((screen_x, screen_y))  # add coordinate to finish list
-
+		self.lb_speed = Label(win, text="Speed")
+		self.lb_speed.place(x=70, y=200)
+		
+		self.speed=Combobox(win, values=['Slowest', 'Slow', 'Normal', 'Fast', 'Fastest'])
+		self.speed.place(x=150, y=200)
+		
+		self.b1=Button(win, text='Visualize', command=self.visualize)
+		self.b1.place(x=150, y=250)
 	
-# ############ main program starts here  ######################
+	def visualize(self):
+		algo = self.algo.get()
+		rows = self.rows.get()
+		cols = self.cols.get()
+		speed = self.speed.get()
 
+		if(rows == ''):
+			rows = random.randint(10,20)*2+1
+		else:
+			rows = int(rows)
+		
+		if(cols==''):
+			cols = random.randint(10,20)*2+1
+		else:
+			cols = int(cols)
 
-maze = turtle.Turtle(shape="square")
-maze.hideturtle()
-maze.penup()                    # lift up the pen so it do not leave a trail
-maze.color('white')	
-maze.speed(0) # fastest
-maze.shapesize(cellWidth/24.0)
+		if(speed == ''):
+			speed = 5
+		elif(speed == 'Slowest'):
+			speed = 1
+		elif(speed == 'Slow'):
+			speed = 3
+		elif(speed == 'Normal'):
+			speed = 5
+		elif(speed == 'Fast'):
+			speed = 10
+		elif(speed == 'Fastest'):
+			speed = 0
 
-walls =[]                    # create walls coordinate list
-finish = []                  # enable the finish array
-start = time.time()
-setupMaze(grid)
-print("End: " + str(time.time()-start))
-
-myTurtle = turtle.Turtle(shape='turtle')
-myTurtle.hideturtle()
-myTurtle.color('red')
-myTurtle.speed(5)
-myTurtle.penup()
-ratio = cellWidth/24.0
-myTurtle.shapesize(cellWidth/24.0)
-myTurtle.goto(-588+cellWidth, 288-cellWidth)
-myTurtle.showturtle()
-myTurtle.pendown()
-
-LHR.start(myTurtle, walls, finish, cellWidth)
+		if(algo == 'Left Hand Rule'):
+			pass
+			maze.start(rows, cols, speed)
+	
+window1=Tk()
+mywin=MyWindow(window1)
+window1.title('Maze Settings')
+window1.geometry("400x500")
+window1.mainloop()
