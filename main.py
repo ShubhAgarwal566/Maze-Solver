@@ -2,7 +2,7 @@ from tkinter import *
 from tkinter.ttk import Combobox
 import random
 
-import maze
+import driver
 
 
 class MyWindow:
@@ -10,7 +10,7 @@ class MyWindow:
 		self.lb_algo = Label(win, text="Algorithm")
 		self.lb_algo.place(x=70,y=50)
 
-		self.algo=Combobox(win, values=['Left Hand Rule', 'Other'])
+		self.algo=Combobox(win, values=['Left Hand Rule', 'Random Mouse'])
 		self.algo.place(x=150, y=50)
 		
 		self.lb_rows = Label(win, text="Rows")
@@ -62,9 +62,8 @@ class MyWindow:
 		elif(speed == 'Fastest'):
 			speed = 0
 
-		if(algo == 'Left Hand Rule'):
-			pass
-			maze.start(rows, cols, speed)
+		if(algo != ''):
+			driver.start(rows, cols, speed, algo)
 	
 window1=Tk()
 mywin=MyWindow(window1)

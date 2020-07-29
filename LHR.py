@@ -25,7 +25,7 @@ def start(myTurtle, walls, finish, cellWidth):
 			if (x_walls, y_walls) in finish:   # check turtle coordinates are at the finish line
 				#print("Finished")
 				start.endFlag = True
-			elif (x_walls, y_walls +cellWidth) in walls:       # check to see if they are walls on the left
+			elif (x_walls, y_walls+cellWidth) in walls:       # check to see if they are walls on the left
 				if(x_walls +cellWidth, y_walls) not in walls:
 					myTurtle.forward(cellWidth)
 				else:

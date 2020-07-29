@@ -3,8 +3,9 @@ import Tkinter as tk
 
 import maze_generator
 import LHR
+import randomMouse
 
-def start(width, height, speed):
+def start(width, height, speed, algo):
 
 	maze_color = 'white'
 	bg_color = 'black'
@@ -35,9 +36,6 @@ def start(width, height, speed):
 	
 	grid = maze_generator.createMaze(width,height)
 	cellWidth = row = int(min(700.0 / len(grid), 1300.0 / len(grid[0])) - 2)
-
-
-
 
 	window = tk.Tk()
 	window.title("Maze-Solver")
@@ -75,6 +73,9 @@ def start(width, height, speed):
 	myTurtle.speed(speed)
 	myTurtle.pendown()
 
-	LHR.start(myTurtle, walls, finish, cellWidth)
+	if(algo == 'Left Hand Rule'):
+		LHR.start(myTurtle, walls, finish, cellWidth)
+	elif(algo == 'Random Mouse'):
+		randomMouse.start(myTurtle, walls, finish, cellWidth)
 	window.destroy()
 	# window.mainloop() # prevents program from quiting 
