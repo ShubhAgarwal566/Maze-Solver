@@ -1,6 +1,6 @@
 def start(myTurtle, walls, finish, cellWidth):
 	start.endFlag = False
-
+	myTurtle.showturtle()
 	def goDown(myTurtle):
 		if (myTurtle.heading() == 270):                   # check to see if the myTurtle is pointing down
 			x_walls = round(myTurtle.xcor(),0)          # myTurtle x coordinates =

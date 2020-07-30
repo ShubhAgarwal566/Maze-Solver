@@ -7,13 +7,6 @@ WALL = '+'
 AGENT = 's'
 GOAL = 'e'
 
-'''
-EMPTY = '0'
-WALL = '1'
-AGENT = 's'
-GOAL = '9'
-'''
-
 def adjacent(cell):
   i,j = cell
   for (y,x) in ((1,0), (0,1), (-1, 0), (0,-1)):
@@ -105,9 +98,9 @@ def generate(width, height, verbose=True):
 
 
 def createMaze(width=9, height=9):
-  #maze = generate(width, height)
-  #print(maze)
-  maze = ['++++++++++++', '+s  + +   ++', '+ +++ + ++++', '+         ++', '+ +++ ++++++', '+   +     ++', '+ +++++ ++++', '+     +   ++', '+ + + ++++++', '+ + +   + ++', '+ + +++++ ++', '+ +      e++', '++++++++++++']
+  maze = generate(width, height)
+  print(maze)
+  #maze = ['++++++++++++', '+s  + +   ++', '+ +++ + ++++', '+         ++', '+ +++ ++++++', '+   +     ++', '+ +++++ ++++', '+     +   ++', '+ + + ++++++', '+ + +   + ++', '+ + +++++ ++', '+ +      e++', '++++++++++++']
   return(maze)
 
 # https://gist.github.com/gmalmquist/2782000bd6b378831858

@@ -1,19 +1,10 @@
-'''
 def start(myTurtle, walls, finish, cellWidth):
-	path = []
-	visited = []
-	def recur(x,y,path, visited):
-		myTurtle.goto(x,y)
-
-
-
-'''
-def start(myTurtle, walls, finish, cellWidth):
-
+	myTurtle.shape('circle')
+	myTurtle.showturtle()
 	path = []
 	visited = []
 
-	def recur(x, y, path, visited):
+	def dfs_path(x, y, path, visited):
 		if((x,y) in finish):
 			path.append((x,y))
 			myTurtle.goto(x,y)
@@ -23,22 +14,22 @@ def start(myTurtle, walls, finish, cellWidth):
 			visited.append((x,y))
 			myTurtle.goto(x,y)
 
-			if(recur(x-cellWidth, y, path, visited)):
+			if(dfs_path(x-cellWidth, y, path, visited)):
 				path.append((x,y))
 				return True
 			myTurtle.goto(x,y)
 
-			if(recur(x+cellWidth, y, path, visited)):
+			if(dfs_path(x+cellWidth, y, path, visited)):
 				path.append((x,y))
 				return True
 			myTurtle.goto(x,y)
 
-			if(recur(x, y-cellWidth, path, visited)):
+			if(dfs_path(x, y-cellWidth, path, visited)):
 				path.append((x,y))
 				return True
 			myTurtle.goto(x,y)
 
-			if(recur(x, y+cellWidth, path, visited)):
+			if(dfs_path(x, y+cellWidth, path, visited)):
 				path.append((x,y))
 				return True
 			myTurtle.goto(x,y)
@@ -46,7 +37,7 @@ def start(myTurtle, walls, finish, cellWidth):
 
 	x = round(myTurtle.xcor(),1)
 	y = round(myTurtle.ycor(),1)
-	recur(x, y, path, visited)
+	dfs_path(x, y, path, visited)
 
 
 

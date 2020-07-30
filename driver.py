@@ -70,7 +70,6 @@ def start(width, height, speed, algo):
 	ratio = cellWidth/24.0
 	myTurtle.shapesize(cellWidth/24.0)
 	myTurtle.goto(-588+cellWidth, 288-cellWidth)
-	myTurtle.showturtle()
 	myTurtle.speed(speed)
 	myTurtle.pendown()
 
@@ -78,10 +77,9 @@ def start(width, height, speed, algo):
 		LHR.start(myTurtle, walls, finish, cellWidth)
 	elif(algo == 'Random Mouse'):
 		randomMouse.start(myTurtle, walls, finish, cellWidth)
-	elif(algo == 'DFS'):
+	elif(algo == 'Depth First Search'):
 		dfs.start(myTurtle, walls, finish, cellWidth)
 	window.destroy()
 	# window.mainloop() # prevents program from quiting 
 
 
-start(10,11,5,'DFS')

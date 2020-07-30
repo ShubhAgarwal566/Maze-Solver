@@ -2,6 +2,7 @@ import random
 
 def start(myTurtle, walls, finish, cellWidth):
 	endFlag = False
+	myTurtle.showturtle()
 	while(endFlag==False):
 		x = round(myTurtle.xcor(),0)
 		y = round(myTurtle.ycor(),0)
