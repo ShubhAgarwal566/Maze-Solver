@@ -19,10 +19,10 @@ class MyWindow:
 		self.lb_cols.place(x=70,y=150)
 
 
-		self.rows=Entry()
 		self.cols=Entry()
-		self.rows.place(x=150, y=100)
-		self.cols.place(x=150, y=150)
+		self.rows=Entry()
+		self.rows.place(x=150, y=150)
+		self.cols.place(x=150, y=100)
 
 		self.lb_speed = Label(win, text="Speed")
 		self.lb_speed.place(x=70, y=200)
@@ -65,8 +65,8 @@ class MyWindow:
 		if(algo != ''):
 			driver.start(rows, cols, speed, algo)
 	
-window1=Tk()
-mywin=MyWindow(window1)
-window1.title('Maze Settings')
-window1.geometry("400x500")
-window1.mainloop()
+window=Tk()
+mywin=MyWindow(window)
+window.title('Maze Settings')
+window.geometry("400x500")
+window.mainloop()

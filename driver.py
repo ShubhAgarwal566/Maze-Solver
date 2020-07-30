@@ -4,6 +4,7 @@ import Tkinter as tk
 import maze_generator
 import LHR
 import randomMouse
+import dfs
 
 def start(width, height, speed, algo):
 
@@ -77,5 +78,10 @@ def start(width, height, speed, algo):
 		LHR.start(myTurtle, walls, finish, cellWidth)
 	elif(algo == 'Random Mouse'):
 		randomMouse.start(myTurtle, walls, finish, cellWidth)
+	elif(algo == 'DFS'):
+		dfs.start(myTurtle, walls, finish, cellWidth)
 	window.destroy()
 	# window.mainloop() # prevents program from quiting 
+
+
+start(10,11,5,'DFS')
