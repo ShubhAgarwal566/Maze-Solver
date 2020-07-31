@@ -10,7 +10,7 @@ class MyWindow:
 		self.lb_algo = Label(win, text="Algorithm")
 		self.lb_algo.place(x=70,y=50)
 
-		self.algo=Combobox(win, values=['Depth First Search','Left Hand Rule', 'Random Mouse'])
+		self.algo=Combobox(win, values=['Depth First Search', 'Breadth First Search', 'Left Hand Rule', 'Random Mouse'])
 		self.algo.place(x=150, y=50)
 		
 		self.lb_rows = Label(win, text="Rows")

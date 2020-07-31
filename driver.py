@@ -5,6 +5,7 @@ import maze_generator
 import LHR
 import randomMouse
 import dfs
+import bfs
 
 def start(width, height, speed, algo):
 
@@ -79,7 +80,8 @@ def start(width, height, speed, algo):
 		randomMouse.start(myTurtle, walls, finish, cellWidth)
 	elif(algo == 'Depth First Search'):
 		dfs.start(myTurtle, walls, finish, cellWidth)
+	elif(algo == 'Breadth First Search'):
+		bfs.start(myTurtle, walls, finish, cellWidth, maze)
 	#window.destroy()
 	window.mainloop() # prevents program from quiting 
-
 
