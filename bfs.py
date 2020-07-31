@@ -1,5 +1,7 @@
 from collections import deque
 
+
+
 def start(myTurtle, walls, finish, cellWidth, maze):
 	maze.color('grey')
 	q = deque()
@@ -58,7 +60,8 @@ def start(myTurtle, walls, finish, cellWidth, maze):
 	myTurtle.shape('circle')
 	myTurtle.showturtle()
 	myTurtle.pensize(2)
-		
+
 	for i in range (len(finalPath)-1, -1, -1):
-		myTurtle.goto(finalPath[i][0], finalPath[i][1])
+		x,y = finalPath[i][0], finalPath[i][1]
+		myTurtle.goto(x, y)
 	

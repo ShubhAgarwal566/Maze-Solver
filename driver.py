@@ -4,7 +4,8 @@ import Tkinter as tk
 import maze_generator
 import LHR
 import randomMouse
-import dfs
+import dfs1
+import dfs2
 import bfs
 
 def start(width, height, speed, algo):
@@ -78,10 +79,13 @@ def start(width, height, speed, algo):
 		LHR.start(myTurtle, walls, finish, cellWidth)
 	elif(algo == 'Random Mouse'):
 		randomMouse.start(myTurtle, walls, finish, cellWidth)
-	elif(algo == 'Depth First Search'):
-		dfs.start(myTurtle, walls, finish, cellWidth)
+	elif(algo == 'Depth First Search - 1'):
+		dfs1.start(myTurtle, walls, finish, cellWidth)
+	elif(algo == 'Depth First Search - 2')	:
+		dfs2.start(myTurtle, walls, finish, cellWidth, maze)
 	elif(algo == 'Breadth First Search'):
 		bfs.start(myTurtle, walls, finish, cellWidth, maze)
-	#window.destroy()
-	window.mainloop() # prevents program from quiting 
+	window.destroy()
+	#window.mainloop() # prevents program from quiting 
 
+start(10,10,5,'Depth First Search - 1')
