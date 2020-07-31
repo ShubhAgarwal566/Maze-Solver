@@ -5,12 +5,12 @@ import random
 import driver
 
 
-class MyWindow:
+class Menu:
 	def __init__(self, win):
 		self.lb_algo = Label(win, text="Algorithm")
 		self.lb_algo.place(x=70,y=50)
 
-		self.algo=Combobox(win, values=['Depth First Search', 'Breadth First Search', 'Left Hand Rule', 'Random Mouse'])
+		self.algo=Combobox(win, values=['Depth First Search - 1', 'Depth First Search - 2', 'Breadth First Search', 'Left Hand Rule', 'Random Mouse'])
 		self.algo.place(x=150, y=50)
 		
 		self.lb_rows = Label(win, text="Rows")
@@ -66,7 +66,7 @@ class MyWindow:
 			driver.start(rows, cols, speed, algo)
 	
 window=Tk()
-mywin=MyWindow(window)
+menu=Menu(window)
 window.title('Maze Settings')
 window.geometry("400x500")
 window.mainloop()

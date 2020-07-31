@@ -61,7 +61,8 @@ def start(width, height, speed, algo):
 	walls =[]                    
 	finish = []  
 	setupMaze(grid)
-
+	maze.speed(speed)
+	maze.hideturtle()
 
 	myTurtle = turtle.RawTurtle(wn)
 	myTurtle.shape('turtle')
@@ -88,4 +89,4 @@ def start(width, height, speed, algo):
 	window.destroy()
 	#window.mainloop() # prevents program from quiting 
 
-start(10,10,5,'Depth First Search - 1')
+# start(10,10,5,'Depth First Search - 1')
