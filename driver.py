@@ -79,7 +79,7 @@ def start(width, height, speed, algo):
 		randomMouse.start(myTurtle, walls, finish, cellWidth)
 	elif(algo == 'Depth First Search'):
 		dfs.start(myTurtle, walls, finish, cellWidth)
-	window.destroy()
-	# window.mainloop() # prevents program from quiting 
+	#window.destroy()
+	window.mainloop() # prevents program from quiting 
 
 
