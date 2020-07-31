@@ -7,6 +7,7 @@ import randomMouse
 import dfs1
 import dfs2
 import bfs
+import deadendFilling
 
 def start(width, height, speed, algo):
 
@@ -86,7 +87,9 @@ def start(width, height, speed, algo):
 		dfs2.start(myTurtle, walls, finish, cellWidth, maze)
 	elif(algo == 'Breadth First Search'):
 		bfs.start(myTurtle, walls, finish, cellWidth, maze)
-	window.destroy()
-	#window.mainloop() # prevents program from quiting 
+	elif(algo == 'Dead-End Filling'):
+		deadendFilling.start(myTurtle, walls, finish, cellWidth, maze)
+	#window.destroy()
+	window.mainloop() # prevents program from quiting 
 
-# start(10,10,5,'Depth First Search - 1')
+# start(80,20,5,'Dead-End Filling')
