@@ -9,6 +9,7 @@ import dfs1
 import dfs2
 import bfs
 import deadendFilling
+import aStar
 
 def start(width, height, lastMaze, speed, algo):
 
@@ -64,6 +65,7 @@ def start(width, height, lastMaze, speed, algo):
 	finish = []  
 	setupMaze(grid)
 	maze.speed(speed)
+	maze.hideturtle()
 
 	myTurtle = turtle.RawTurtle(wn)
 	myTurtle.shape('turtle')
@@ -91,7 +93,9 @@ def start(width, height, lastMaze, speed, algo):
 		bfs.start(myTurtle, walls, finish, cellWidth, maze)
 	elif(algo == 'Dead-End Filling'):
 		deadendFilling.start(myTurtle, walls, finish, cellWidth, maze)
+	elif(algo == 'A* Search'):
+		aStar.start(myTurtle, walls, finish, cellWidth, maze)
 	# window.destroy()
 	window.mainloop() # prevents program from quiting 
 
-start(2,200,False,5,'Left Hand Rule')
+# start(10,10,False,5,'A* Search')
