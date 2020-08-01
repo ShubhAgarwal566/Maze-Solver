@@ -1,6 +1,6 @@
 import random
 import sys
-
+import json
 
 EMPTY = ' '
 WALL = '+'
@@ -97,10 +97,18 @@ def generate(width, height, verbose=True):
   return lines
 
 
-def createMaze(width=9, height=9):
+def createMaze(width=9, height=9, lastFlag=False):
   maze = generate(width, height)
-  print(maze)
-  #maze = ['+++++++++++++++++', '+s        + + + +', '+ +++++ +++ + + +', '+     + +   + + +', '+ +++++++ +++ + +', '+     + + + +   +', '+ +++++ + + + +++', '+         +     +', '+ + +++++++ +++ +', '+ +           + +', '+ +++ +++ + + + +', '+   +   + + + + +', '+ +++ +++++ +++++', '+ +       +   + +', '+ +++ + +++++++ +', '+   + +        e+', '+++++++++++++++++']
+  if(lastFlag):
+    f = open('lastMaze.json', 'r')
+    mazeDict = json.load(f)
+    maze = mazeDict['lastMaze']
+    f.close()
+  else:
+    mazeDict = {"lastMaze":maze}
+    f=open('lastMaze.json', 'w')
+    json.dump(mazeDict, f)
+    f.close()
   return(maze)
 
 # https://gist.github.com/gmalmquist/2782000bd6b378831858

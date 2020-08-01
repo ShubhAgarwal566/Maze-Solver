@@ -3,13 +3,14 @@ import Tkinter as tk
 
 import maze_generator
 import LHR
+import RHR
 import randomMouse
 import dfs1
 import dfs2
 import bfs
 import deadendFilling
 
-def start(width, height, speed, algo):
+def start(width, height, lastMaze, speed, algo):
 
 	maze_color = 'white'
 	bg_color = 'black'
@@ -38,7 +39,7 @@ def start(width, height, speed, algo):
 	# ############ main program starts here  ######################
 
 	
-	grid = maze_generator.createMaze(width,height)
+	grid = maze_generator.createMaze(width, height, lastMaze)
 	cellWidth = row = int(min(700.0 / len(grid), 1300.0 / len(grid[0])) - 2)
 
 	window = tk.Tk()
@@ -79,6 +80,8 @@ def start(width, height, speed, algo):
 
 	if(algo == 'Left Hand Rule'):
 		LHR.start(myTurtle, walls, finish, cellWidth)
+	elif(algo == 'Right Hand Rule'):
+		RHR.start(myTurtle, walls, finish, cellWidth)
 	elif(algo == 'Random Mouse'):
 		randomMouse.start(myTurtle, walls, finish, cellWidth)
 	elif(algo == 'Depth First Search - 1'):
@@ -89,7 +92,7 @@ def start(width, height, speed, algo):
 		bfs.start(myTurtle, walls, finish, cellWidth, maze)
 	elif(algo == 'Dead-End Filling'):
 		deadendFilling.start(myTurtle, walls, finish, cellWidth, maze)
-	#window.destroy()
-	window.mainloop() # prevents program from quiting 
+	window.destroy()
+	#window.mainloop() # prevents program from quiting 
 
-start(20,20,5,'Dead-End Filling')
+# start(20,20,5,'Left Hand Rule')
