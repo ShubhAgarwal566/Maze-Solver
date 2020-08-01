@@ -10,7 +10,8 @@ class Menu:
 		self.lb_algo = Label(win, text="Algorithm")
 		self.lb_algo.place(x=70,y=50)
 
-		self.algo=Combobox(win, values=['Depth First Search - 1', 'Depth First Search - 2', 'Breadth First Search', 'Dead-End Filling','Left Hand Rule', 'Random Mouse'])
+		self.algoList = ['Depth First Search - 1', 'Depth First Search - 2', 'Breadth First Search', 'Dead-End Filling', 'Left Hand Rule', 'Random Mouse']
+		self.algo=Combobox(win, values=self.algoList)
 		self.algo.place(x=150, y=50)
 		
 		self.lb_rows = Label(win, text="Rows")

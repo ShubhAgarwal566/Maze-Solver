@@ -8,26 +8,16 @@ def wallCount(walls, filled, x, y, cellWidth):
 	down = (x, y-cellWidth)
 
 	count = 0
-	if(left in walls):
+	if(left in walls or left in filled):
 		count+=1
-	if(right in walls):
+	if(right in walls or right in filled):
 		count+=1
-	if(up in walls):
+	if(up in walls or up in filled):
 		count+=1
-	if(down in walls):
+	if(down in walls or down in filled):
 		count+=1
 	
-	fillCount = 0
-	if(left in filled):
-		fillCount+=1
-	if(right in filled):
-		fillCount+=1
-	if(up in filled):
-		fillCount+=1
-	if(down in filled):
-		fillCount+=1
-
-	return count, fillCount
+	return count
 
 def start(myTurtle, walls, finish, cellWidth, maze):
 	
@@ -59,7 +49,7 @@ def start(myTurtle, walls, finish, cellWidth, maze):
 			q.append(down)
 		visited.append((x,y))
 
-		if(wallCount(walls, filled, x, y, cellWidth)[0]==3 and (x,y) not in finish):
+		if(wallCount(walls, filled, x, y, cellWidth)==3 and (x,y) not in finish):
 			deadendList.append((x,y))
 
 	maze.color('grey')
@@ -69,8 +59,8 @@ def start(myTurtle, walls, finish, cellWidth, maze):
 	for i in range (len(deadendList)):
 		x,y = deadendList[i][0], deadendList[i][1]
 		while(True):
-			wall, fill = wallCount(walls, filled, x, y, cellWidth) 
-			if( fill+wall==3 and (x,y) not in finish):
+			 
+			if( wallCount(walls, filled, x, y, cellWidth)==3 and (x,y) not in finish):
 				visited.append((x,y))
 				maze.goto(x, y)
 				filled.append((x,y))
