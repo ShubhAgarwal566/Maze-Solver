@@ -20,7 +20,9 @@ def wallCount(walls, filled, x, y, cellWidth):
 	return count
 
 def start(myTurtle, walls, finish, cellWidth, maze):
-	
+	maze.shape('circle')
+	maze.color('red')
+	maze.shapesize(cellWidth/48.0)
 	q = deque()
 	visited = []
 	filled = []
@@ -51,7 +53,11 @@ def start(myTurtle, walls, finish, cellWidth, maze):
 
 		if(wallCount(walls, filled, x, y, cellWidth)==3 and (x,y) not in finish):
 			deadendList.append((x,y))
-
+			maze.goto(x,y)
+			maze.stamp()
+			
+	maze.shapesize(cellWidth/24.0)
+	maze.shape('square')
 	maze.color('grey')
 	visited = []
 	filled = []

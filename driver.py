@@ -92,4 +92,4 @@ def start(width, height, speed, algo):
 	#window.destroy()
 	window.mainloop() # prevents program from quiting 
 
-start(80,20,5,'Dead-End Filling')
+start(20,20,5,'Dead-End Filling')
