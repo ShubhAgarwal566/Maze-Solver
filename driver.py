@@ -40,7 +40,7 @@ def start(width, height, lastMaze, speed, algo):
 
 	
 	grid = maze_generator.createMaze(width, height, lastMaze)
-	cellWidth = row = int(min(700.0 / len(grid), 1300.0 / len(grid[0])) - 2)
+	cellWidth = row = int(  min(  700.0 / (len(grid)*1.1), 1300.0 / (len(grid[0])*1.05)  ) )
 
 	window = tk.Tk()
 	window.title("Maze-Solver")
@@ -53,18 +53,17 @@ def start(width, height, lastMaze, speed, algo):
 	maze = turtle.RawTurtle(wn)
 	wn['bg'] = bg_color
 	maze.shape('square')
-	maze.hideturtle()
 	maze.penup()
 	maze.color(maze_color)	
 	maze.speed(0) # fastest
 	maze.shapesize(cellWidth/24.0)
+	maze.hideturtle()
 
 
 	walls =[]                    
 	finish = []  
 	setupMaze(grid)
 	maze.speed(speed)
-	maze.hideturtle()
 
 	myTurtle = turtle.RawTurtle(wn)
 	myTurtle.shape('turtle')
@@ -92,7 +91,7 @@ def start(width, height, lastMaze, speed, algo):
 		bfs.start(myTurtle, walls, finish, cellWidth, maze)
 	elif(algo == 'Dead-End Filling'):
 		deadendFilling.start(myTurtle, walls, finish, cellWidth, maze)
-	window.destroy()
-	#window.mainloop() # prevents program from quiting 
+	# window.destroy()
+	window.mainloop() # prevents program from quiting 
 
-# start(20,20,5,'Left Hand Rule')
+start(2,200,False,5,'Left Hand Rule')

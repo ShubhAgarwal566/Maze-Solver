@@ -73,7 +73,10 @@ class Menu:
 			speed = 0
 
 		if(algo != ''):
-			driver.start(rows, cols, lastMaze, speed, algo)
+			try:
+				driver.start(rows, cols, lastMaze, speed, algo)
+			except:
+				pass
 	
 window=Tk()
 menu=Menu(window)
