@@ -111,4 +111,3 @@ def createMaze(width=9, height=9, lastFlag=False):
     f.close()
   return(maze)
 
-# https://gist.github.com/gmalmquist/2782000bd6b378831858

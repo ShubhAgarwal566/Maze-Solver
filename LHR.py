@@ -1,55 +1,53 @@
 def start(myTurtle, walls, finish, cellWidth):
-	start.endFlag = False
-	myTurtle.showturtle()
+	myTurtle.showturtle()							# make the turtle visible
+	while(True):									# loop
+		x = round(myTurtle.xcor(),0)				# current x coord
+		y = round(myTurtle.ycor(),0)				# current y coord
+		heading = myTurtle.heading()				# current direction (0-360)
 
-	while(start.endFlag==False):
-		x = round(myTurtle.xcor(),0)
-		y = round(myTurtle.ycor(),0)
-		heading = myTurtle.heading()
-
-		if ((x, y) in finish):  
-			break
+		if ((x, y) in finish):  					# if current node is final node
+			break									# break while loop
 		
-		if(heading==0):
-			if( (x, y+cellWidth) in walls ):       # check to see if they are walls on the left
-				if( (x+cellWidth, y) not in walls):
-					myTurtle.forward(cellWidth)
-				else:
-					myTurtle.right(90)
-			else:
-				myTurtle.left(90)
-				myTurtle.forward(cellWidth)
+		if(heading==0):								# turtle facing right on screen
+			if( (x, y+cellWidth) in walls ):		# check if wall on the left of turtle
+				if( (x+cellWidth, y) not in walls):	# if no wall in front
+					myTurtle.forward(cellWidth)		# move one step forward
+				else:								# wall in front
+					myTurtle.right(90)				# turn right
+			else:									# no wall on left side
+				myTurtle.left(90)					# turn left
+				myTurtle.forward(cellWidth)			# move one step forward
 
 		
-		if(heading==90):
-			if( (x-cellWidth, y) in walls ):       # check to see if they are walls on the left
-				if( (x, y+cellWidth) not in walls):
-					myTurtle.forward(cellWidth)
-				else:
-					myTurtle.right(90)
-			else:
-				myTurtle.left(90)
-				myTurtle.forward(cellWidth)
+		if(heading==90):							# turtle facing up on screen
+			if( (x-cellWidth, y) in walls ):       	# check if wall on the left of turtle
+				if( (x, y+cellWidth) not in walls):	# if no wall in front
+					myTurtle.forward(cellWidth)		# move one step forward
+				else:								# wall in front 
+					myTurtle.right(90)				# turn right
+			else:									# no wall on left side
+				myTurtle.left(90)					# turn left 
+				myTurtle.forward(cellWidth)			# move one step forward
 		
-		if(heading==180):
-			if( (x, y-cellWidth) in walls ):       # check to see if they are walls on the left
-				if( (x-cellWidth, y) not in walls):
-					myTurtle.forward(cellWidth)
-				else:
-					myTurtle.right(90)
-			else:
-				myTurtle.left(90)
-				myTurtle.forward(cellWidth)
+		if(heading==180):							# turtle facing left on screen
+			if( (x, y-cellWidth) in walls ):       	# check if wall on the left of turtle
+				if( (x-cellWidth, y) not in walls):	# if no wall in front
+					myTurtle.forward(cellWidth)		# move one step forward
+				else:								# wall in front
+					myTurtle.right(90)				# turn right 
+			else:									# no wall on left side
+				myTurtle.left(90)					# turn left
+				myTurtle.forward(cellWidth)			# move one step forward
 		
-		if(heading==270):
-			if( (x+cellWidth, y) in walls ):       # check to see if they are walls on the left
-				if( (x, y-cellWidth) not in walls):
-					myTurtle.forward(cellWidth)
-				else:
-					myTurtle.right(90)
-			else:
-				myTurtle.left(90)
-				myTurtle.forward(cellWidth)
+		if(heading==270):							# turtle facing down on screen
+			if( (x+cellWidth, y) in walls ):       	# check if wall on the left of turtle
+				if( (x, y-cellWidth) not in walls):	# if no wall in front
+					myTurtle.forward(cellWidth)		# move one step forward
+				else:								# wall in front
+					myTurtle.right(90)				# turn right
+			else:									# no wall on left side
+				myTurtle.left(90)					# turn left
+				myTurtle.forward(cellWidth)			# move one step forward
 
 
 

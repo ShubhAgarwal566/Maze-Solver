@@ -1,56 +1,57 @@
 import random
 
 def start(myTurtle, walls, finish, cellWidth):
-	endFlag = False
-	myTurtle.showturtle()
-	while(endFlag==False):
-		x = round(myTurtle.xcor(),0)
-		y = round(myTurtle.ycor(),0)
-		options = []
+	myTurtle.showturtle()						# make the turtle visible
+	while(True):								# loop
+		x = round(myTurtle.xcor(),0)			# current x coord
+		y = round(myTurtle.ycor(),0)			# current y coord
+		options = []							# list containing possible moves
 
-		if((x,y) in finish):
-			endFlag = False
-			break
+		if((x,y) in finish):					# if current node is final node
+			break								# break
 
-		if(myTurtle.heading()==0): # facing right
-			if((x+cellWidth,y) not in walls): #empty ahead
-				options.append('f')
-			if((x,y+cellWidth) not in walls): #empty on left
-				options.append('l')
-			if((x, y-cellWidth) not in walls): # empty on right
-				options.append('r')
-		elif(myTurtle.heading()==90): # facing up
-			if((x,y+cellWidth) not in walls): #empty ahead
-				options.append('f')
-			if((x-cellWidth,y) not in walls): #empty on left
-				options.append('l')
-			if((x+cellWidth, y) not in walls): # empty on right
-				options.append('r')
-		elif(myTurtle.heading()==180): # facing left
-			if((x-cellWidth,y) not in walls): #empty ahead
-				options.append('f')
-			if((x,y-cellWidth) not in walls): #empty on left
-				options.append('l')
-			if((x, y+cellWidth) not in walls): # empty on right
-				options.append('r')
-		elif(myTurtle.heading()==270): # facing down
-			if((x,y-cellWidth) not in walls): #empty ahead
-				options.append('f')
-			if((x+cellWidth,y) not in walls): #empty on left
-				options.append('l')
-			if((x-cellWidth, y) not in walls): # empty on right
-				options.append('r')
+		if(myTurtle.heading()==0): 				# turtle facing right on screen
+			if((x+cellWidth,y) not in walls): 	# no wall in front
+				options.append('f')				# put front in options
+			if((x,y+cellWidth) not in walls): 	# no wall in left 
+				options.append('l')				# put left in options
+			if((x, y-cellWidth) not in walls): 	# no wall on right
+				options.append('r')				# put right in options
+		
+		elif(myTurtle.heading()==90): 			# turtle facing up on screen
+			if((x,y+cellWidth) not in walls): 	# no wall in front
+				options.append('f')				# put front in options
+			if((x-cellWidth,y) not in walls): 	# no wall in left
+				options.append('l')				# put let in options
+			if((x+cellWidth, y) not in walls): 	# no wall in right
+				options.append('r')				# put right in options
+		
+		elif(myTurtle.heading()==180): 			# turtle facing left on screen
+			if((x-cellWidth,y) not in walls): 	# no wall in front
+				options.append('f')				# put front in options
+			if((x,y-cellWidth) not in walls): 	# no wall in left
+				options.append('l')				# put left in options
+			if((x, y+cellWidth) not in walls): 	# no wall in right
+				options.append('r')				# put right in options
+		
+		elif(myTurtle.heading()==270): 			# turtle facing down on screen
+			if((x,y-cellWidth) not in walls): 	# no wall in front
+				options.append('f')				# put front in options
+			if((x+cellWidth,y) not in walls): 	# no wall in left
+				options.append('l')				# put left in options
+			if((x-cellWidth, y) not in walls): 	# no wall in right
+				options.append('r')				# put right in options
 
-		if(len(options)==0):
-			myTurtle.right(180)
-		else:
-			choice = random.choice(options)
-			if(choice=='f'):
-				myTurtle.forward(cellWidth)
-			elif(choice=='l'):
-				myTurtle.left(90)
-				myTurtle.forward(cellWidth)
-			elif(choice=='r'):
-				myTurtle.right(90)
-				myTurtle.forward(cellWidth)
+		if(len(options)==0):					# if at deadend 
+			myTurtle.right(180)					# turn back
+		else:									# not at deadend
+			choice = random.choice(options)		# select a direction randomly
+			if(choice=='f'):					# if front
+				myTurtle.forward(cellWidth)		# move one step forward
+			elif(choice=='l'):					# if left
+				myTurtle.left(90)				# turn left
+				myTurtle.forward(cellWidth)		# move one step forward
+			elif(choice=='r'):					# if right
+				myTurtle.right(90)				# turn right
+				myTurtle.forward(cellWidth)		# move one step forward
 		

@@ -10,15 +10,16 @@ class Menu:
 		self.lb_algo = Label(win, text="Algorithm")
 		self.lb_algo.place(x=70,y=50)
 
+		self.algoDefault = StringVar()
+		self.algoDefault.set('A* Search')
 		self.algoList = ['A* Search', 'Depth First Search - 1', 'Depth First Search - 2', 'Breadth First Search', 'Dead-End Filling', 'Left Hand Rule', 'Right Hand Rule', 'Random Mouse']
-		self.algo=Combobox(win, values=self.algoList)
+		self.algo=Combobox(win, values=self.algoList, text=self.algoDefault)
 		self.algo.place(x=150, y=50)
 		
 		self.lb_rows = Label(win, text="Rows")
 		self.lb_cols = Label(win, text="Cols")
 		self.lb_rows.place(x=10,y=100)
 		self.lb_cols.place(x=10,y=150)
-
 
 		self.cols=Entry()
 		self.rows=Entry()
@@ -35,7 +36,9 @@ class Menu:
 		self.lb_speed = Label(win, text="Speed")
 		self.lb_speed.place(x=70, y=200)
 		
-		self.speed=Combobox(win, values=['Slowest', 'Slow', 'Normal', 'Fast', 'Fastest'])
+		self.speedDefault = StringVar()
+		self.speedDefault.set("Normal")
+		self.speed=Combobox(win, values=['Slowest', 'Slow', 'Normal', 'Fast', 'Fastest'], text=self.speedDefault)
 		self.speed.place(x=150, y=200)
 		
 		self.b1=Button(win, text='Visualize', command=self.visualize)

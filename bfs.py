@@ -1,67 +1,37 @@
 from collections import deque
 
-
-
 def start(myTurtle, walls, finish, cellWidth, maze):
-	maze.color('grey')
-	q = deque()
-	visited = []
-	x = myTurtle.xcor()
-	y = myTurtle.ycor()
-	path = {(x,y):None}
-	q.append((x,y))
-	while (True):
-		if(len(q)==0):
-			break
+	maze.color('grey')										# set the color of search square as grey
+	q = deque()												# create a double ended queue
+	visited = []											# create a list to store nodes which are visited
+	x = myTurtle.xcor()										# current x location
+	y = myTurtle.ycor()										# current y location
+	path = {(x,y):None}										# create a dict to store path, key = current location, value = parent location
+	q.append((x,y))											# put starting node in the queue
+	while (len(q)!=0):										# loop until queue is empty 
 
-		x,y = q.popleft()
-		left = (x-cellWidth, y)
-		right = (x+cellWidth, y)
-		up = (x, y+cellWidth)
-		down = (x, y-cellWidth)
+		x,y = q.popleft()									# get the first element in the queue
+		for cell in [(x-cellWidth,y), (x+cellWidth,y), (x,y+cellWidth), (x,y-cellWidth)]: # left, right, up, down
+			if(cell not in walls and cell not in visited):  # if neighbour cell is not wall and is not visited 
+				q.append(cell)								# put it in the queue
+				path[cell] = (x,y)							# put in the path dict with parent
+				if(cell not in finish):						# if neighbour is not target
+					maze.goto(cell)							# move there
+					maze.stamp()							# put a stamp
 		
-
-		if(left not in walls and left not in visited):
-			q.append(left)
-			path[left] = (x,y)
-			if(left not in finish):
-				maze.goto(left)
-				maze.stamp()
-		if(right not in walls and right not in visited):
-			q.append(right)
-			path[right] = (x,y)
-			if(right not in finish):
-				maze.goto(right)
-				maze.stamp()
-		if(up not in walls and up not in visited):
-			q.append(up)
-			path[up] = (x,y)
-			if(up not in finish):
-				maze.goto(up)
-				maze.stamp()
-		if(down not in walls and down not in visited):
-			q.append(down)
-			path[down] = (x,y)
-			if(down not in finish):
-				maze.goto(down)
-				maze.stamp()
-
-
-		visited.append((x,y))
+		visited.append((x,y))								# append current node in the visited list
 	
-	finalPath = [finish[0]]
-	source = finish[0]
-	while(True):
-		source = path[source]
-		if(source==None):
-			break
-		finalPath.append(source)
+	finalPath = [finish[0]]									# list containing the final path
+	source = finish[0]										# using backtack so set source as final point
+	while(source!=None):									# loop until source is None
+		finalPath.append(source)							# put in finalPath list
+		source = path[source]								# change soure to parent
 
-	myTurtle.shape('circle')
-	myTurtle.showturtle()
-	myTurtle.pensize(2)
+	myTurtle.shape('circle')								# set the shape of turtle as circle 
+	myTurtle.showturtle()									# make the turtle visible
+	myTurtle.pensize(2)										# set the pen width as 2
 
-	for i in range (len(finalPath)-1, -1, -1):
-		x,y = finalPath[i][0], finalPath[i][1]
-		myTurtle.goto(x, y)
+	for i in range (len(finalPath)-1, -1, -1):				# loop through finalPath in reverse order
+		x,y = finalPath[i][0], finalPath[i][1]				
+		myTurtle.goto(x, y)									# goto the position
 	
