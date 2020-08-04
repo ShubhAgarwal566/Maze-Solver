@@ -1,5 +1,6 @@
 def start(myTurtle, walls, finish, cellWidth):
 	myTurtle.shape('circle')
+	myTurtle.pensize(2)
 	myTurtle.showturtle()
 	visited = []
 
@@ -15,7 +16,7 @@ def start(myTurtle, walls, finish, cellWidth):
 			
 			myTurtle.pencolor('red')
 			myTurtle.goto(x,y)
-			myTurtle.pencolor('green')
+			myTurtle.pencolor('grey')
 
 			if(dfs_path(x-cellWidth, y, visited)):
 				return True
